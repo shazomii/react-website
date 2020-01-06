@@ -1,0 +1,21 @@
+.login-page {
+    padding-top: 5em;
+}
+
+.login-form {
+    max-width: 20em;
+    margin: auto;
+    background: rgb(189, 211, 186);
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+}
+
+.login-form h1 {
+    text-align: center;
+    font-weight: bolder;
+    display: block;
+    font-size: 22px;
+    width: 100%;
+    margin-bottom: 20px;
+}
