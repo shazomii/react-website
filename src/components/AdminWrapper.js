@@ -9,8 +9,6 @@ import {
   Typography,
   IconButton,
   Drawer,
-  List,
-  ListItem,
   withStyles,
   Divider
 } from "@material-ui/core";
@@ -21,9 +19,13 @@ import Sidebar from "./Common/SideBar";
 const drawerWidth = 240;
 
 const styles = theme => ({
+  root: {
+    display: "flex"
+  },
   toolbar: {
     paddingRight: 24
   },
+  appBarSpace: theme.mixins.toolbar,
   drawerPaper: {
     position: "relative",
     whiteSpace: "noWrap",
@@ -35,7 +37,7 @@ const styles = theme => ({
   },
   drawerPaperClose: {
     overflowX: "hidden",
-    width: theme.spacing.unit * 7,
+    width: theme.spacing(7),
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -60,7 +62,14 @@ const styles = theme => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
-    padding: "0 8px"
+    padding: "0 8px",
+    ...theme.mixins.toolbar
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+    height: "100vh",
+    overflow: "auto"
   }
 });
 
@@ -83,7 +92,7 @@ class AdminWrapper extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div id="admin-page">
+      <div id="admin-page" className={classes.root}>
         <AppBar
           className={classNames(
             classes.appBar,
@@ -117,7 +126,10 @@ class AdminWrapper extends Component {
           <Divider />
           <Sidebar />
         </Drawer>
-        {this.props.children}
+        <main className={classes.content}>
+          <div className={classes.appBarSpace} />
+          {this.props.children}
+        </main>
       </div>
     );
   }

@@ -9,14 +9,17 @@ import About from './components/pages/About';
 import Contact from './components/pages/Contact';
 import Login from './components/pages/Login';
 import AdminWrapper from './components/AdminWrapper';
-import Dashboard from './components/pages/Dashboard';
+import Dashboard from './components/pages/admin/Dashboard';
 import LoginWrapper from './components/LoginWrapper';
+import Posts from './components/pages/admin/Posts';
+import Users from './components/pages/admin/Users';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <Route
+        exact={true}
           path="/admin"
           render={props => {
             return (
@@ -33,6 +36,42 @@ class App extends Component {
             </div>
           )
           }} />
+
+        <Route
+          path="/admin/users"
+          render={props => {
+            return (
+            <div>
+              {this.props.auth.token ?
+              <AdminWrapper>
+                <Users />
+              </AdminWrapper>
+            :
+              <LoginWrapper>
+                <Login />
+              </LoginWrapper>
+            }
+            </div>
+          )
+          }}/>
+
+        <Route
+          path="/admin/posts"
+          render={props => {
+            return (
+            <div>
+              {this.props.auth.token ?
+              <AdminWrapper>
+                <Posts />
+              </AdminWrapper>
+            :
+              <LoginWrapper>
+                <Login />
+              </LoginWrapper>
+            }
+            </div>
+          )
+          }}/>
 
         <Route
           exact={true}
